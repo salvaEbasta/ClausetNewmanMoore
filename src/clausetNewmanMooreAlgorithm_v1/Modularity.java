@@ -72,8 +72,5 @@ public class Modularity {
 		m = new Modularity(adjMat, new int[]{1,1,1,1,4,4,4});
 		System.out.println(Arrays.toString(m.nodesToCommunities()));
 		System.out.println(String.format("modularity: %.10f", m.compute()));
-		adjMat = new AdjMatrix(new int[][] {{0, 1, 0},{1, 0, 0},{0, 0, 0}});
-		m = new Modularity(adjMat, new int[]{1,2,3});
-		System.out.println(String.format("Expected: -0.5, modularity: %.10f", m.compute()));
 	}
 }
