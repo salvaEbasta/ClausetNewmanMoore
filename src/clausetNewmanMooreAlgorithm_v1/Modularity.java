@@ -1,8 +1,9 @@
 package clausetNewmanMooreAlgorithm_v1;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.*;
+
+import clausetNewmanMooreAlgorithm_v1.AdjMatrix;
 
 public class Modularity {
 	private AdjMatrix adj;
@@ -33,13 +34,11 @@ public class Modularity {
 	private int delta(int ci, int cj) {
 		return ci==cj?1:0;
 	}
-	public double compute(List<Double> a) {
-		return IntStream.of(nodesToCommunities)
-				.distinct()
-				.mapToDouble((i)->e(i,i)-Math.pow(a.get(i), 2))
-				.sum();
-	}
 	public double compute() {
+		System.out.println(String.format("e total = %f", IntStream.of(nodesToCommunities)
+																	.distinct()
+																	.mapToDouble((i)->e(i,i))
+																	.sum()));
 		return IntStream.of(nodesToCommunities)
 						.distinct()
 						.mapToDouble((i)->e(i,i)-Math.pow(a(i), 2))
@@ -73,5 +72,8 @@ public class Modularity {
 		m = new Modularity(adjMat, new int[]{1,1,1,1,4,4,4});
 		System.out.println(Arrays.toString(m.nodesToCommunities()));
 		System.out.println(String.format("modularity: %.10f", m.compute()));
+		adjMat = new AdjMatrix(new int[][] {{0, 1, 0},{1, 0, 0},{0, 0, 0}});
+		m = new Modularity(adjMat, new int[]{1,2,3});
+		System.out.println(String.format("Expected: -0.5, modularity: %.10f", m.compute()));
 	}
 }

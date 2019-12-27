@@ -14,9 +14,8 @@ public class Community {
 		members.addAll(c.members);
 		return true;
 	}
-	public String toString() {
-		return members.toString();
-	}
+	public String toString() {return members.toString();}
+	
 	public static void main(String[] args) {
 		Community c1 = new Community("prova1");
 		Community c2 = new Community("prova2");

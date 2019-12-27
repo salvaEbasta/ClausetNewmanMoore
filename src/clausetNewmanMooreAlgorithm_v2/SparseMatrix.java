@@ -1,6 +1,5 @@
 package clausetNewmanMooreAlgorithm_v2;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
@@ -38,39 +37,44 @@ public class SparseMatrix {
 	public void removeRowCol(int i) throws IndexOutOfBoundsException {
 		if(i>=dim)
 			throw new IndexOutOfBoundsException();
-		IntStream.range(0, dim)
-					.forEach((row)->{
-						if(rows.containsKey(row)) {
-							if(rows.get(row).containsKey(i))
-								rows.get(row).remove(i);
-							ArrayList<Integer> toMod = new ArrayList<Integer>();
-							rows.get(row)
-								.keySet()
-								.stream()
-								.filter((k)->k>i)
-								.mapToInt((k)->k.intValue())
-								.forEach((k)->toMod.add(k));
-							toMod.stream()
-									.forEach((k)->{
-										double value = rows.get(row).get(k);
-										rows.get(row).put(k-1, value);
-									});
-						}
-						rows.get(row).remove(dim-1);
-					});
-		rows.remove(i);
-		ArrayList<Integer> toMod = new ArrayList<Integer>();
-		rows.keySet()
-			.stream()
-			.filter((row)->row>i)
-			.forEach((row)->toMod.add(row));
-		toMod.stream()
-				.forEach((row)->{
-					TreeMap<Integer,Double> tmp = rows.get(row);
-					rows.put(row-1, tmp);
-				});
-		rows.remove(dim-1);
+		removeCol(i);
+		removeRow(i);
 		dim = dim - 1;
+	}
+	
+	private void removeCol(int c) {
+		IntStream.range(0, dim)
+					.filter((r)->rows.containsKey(r))
+					.forEach((r)->{
+						if(rows.get(r).containsKey(c))
+							rows.get(r).remove(c);
+						int prevC = c;
+						int nextC = c;
+						if(rows.get(r).ceilingKey(prevC) != null)
+							nextC = rows.get(r).ceilingKey(prevC);
+						while(nextC != prevC && nextC < dim) {
+							rows.get(r).put(nextC-1, rows.get(r).get(nextC));
+							rows.get(r).remove(nextC);
+							prevC = nextC;
+							if(rows.get(r).ceilingKey(prevC) != null)
+								nextC = rows.get(r).ceilingKey(prevC);
+						}
+					});
+	}
+	
+	private void removeRow(int r) {
+		rows.remove(r);
+		int prevR = r;						
+		int nextR = r;
+		if(rows.ceilingKey(prevR) != null)
+			nextR = rows.ceilingKey(prevR);
+		while(nextR != prevR && nextR < dim) {
+			rows.put(nextR-1, rows.get(nextR));
+			rows.remove(nextR);
+			prevR = nextR;
+			if(rows.ceilingKey(prevR) != null)
+				nextR = rows.ceilingKey(prevR);
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -80,22 +84,30 @@ public class SparseMatrix {
 		StringBuilder sb = new StringBuilder("[");
 		rows.keySet().stream().forEach((i)->rows.get(i).keySet().stream().forEach((j)->sb.append(String.format("(%d, %d): %f, ", i, j, rows.get(i).get(j)))));
 		return sb.append("]").toString();
+		
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("Test 1: zeroes matrix");
 		SparseMatrix r2x2 = new SparseMatrix(2);
 		IntStream.range(0, r2x2.size()).forEach((i)->IntStream.range(0, r2x2.size()).forEach((j)->System.out.println(String.format("%d,%d: %f",i,j,r2x2.get(i,j)))));
 		
+		System.out.println("Test 2: one different than 0 matrix");
 		r2x2.set(0,0,2);
 		IntStream.range(0, r2x2.size()).forEach((i)->IntStream.range(0, r2x2.size()).forEach((j)->System.out.println(String.format("%d,%d: %f",i,j,r2x2.get(i,j)))));
 		System.out.println(r2x2.toString());
 		
+		System.out.println("Test 3: from one item to all zeroes");
+		System.out.println(r2x2.toString());
 		r2x2.set(0, 0, 0);
 		System.out.println(r2x2.toString());
+		System.out.println("Test 4: reduction of one Row&Column");
 		r2x2.set(0, 0, 1);
 		r2x2.set(0, 1, 2);
 		r2x2.set(1, 0, 3);
 		r2x2.set(1, 1, 4);
+		System.out.println(r2x2.toString());
+		r2x2.removeRowCol(0);
 		System.out.println(r2x2.toString());
 		r2x2.removeRowCol(0);
 		System.out.println(r2x2.toString());
