@@ -2,7 +2,6 @@ package clausetNewmanMooreAlgorithm_v2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.TreeMap;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
@@ -14,7 +13,6 @@ public class ClausetNewmanMoore {
 	private double Q;
 	private SparseMatrix deltaQ;
 	private MaxHeap H;
-	//	private TreeMap<Integer,MatrixEntry> H; //max_heap
 	private double[] a;
 	private ArrayList<Community> communities;
 	
@@ -95,21 +93,17 @@ public class ClausetNewmanMoore {
 		log.info("Init deltaQ + H . . . ");
 		deltaQ = new SparseMatrix(adj.size());
 		H = new MaxHeap();
-//		H = new TreeMap<Integer,MatrixEntry>();
 		IntStream.range(0, adj.size())
 					.forEach((i)->{
-//						H.put(i, MatrixEntry.nullEntry());
 						IntStream.range(0, adj.size())
 									.forEach((j)->{
 										if(adj.get(i, j)>0) {
 											double newValue = 1.0/(2*adj.edgesNumber())-a[i]*a[j];
 											deltaQ.set(i, j, newValue);
 											deltaQ.set(j, i, newValue);
-//											if(H.elementAt(i) == null || H.valueAt(i).compareTo(newValue) < 0)
-//											if(!H.get(i).isValid() || H.get(i).value().compareTo(newValue)<0)
-//												H.put(i, new MatrixEntry(newValue, i, j));
-											H.add(new MatrixEntry(newValue, i, j));
-										}
+											H.populate(new MatrixEntry(newValue, i, j));
+										}else
+											H.populate(new MatrixEntry(0.0, i, j));
 									});
 					});
 	}
@@ -155,6 +149,8 @@ public class ClausetNewmanMoore {
 	 * @param adj
 	 */
 	private void update_deltaQ_H_adjMatrix(int j, int i, AdjMatrix adj) {
+		ArrayList<Integer> heapToUpdate = new ArrayList<Integer>();
+		heapToUpdate.add(j);
 		IntStream.range(0, deltaQ.size())
 					.forEach((k)->{
 						if(adj.get(k, i)>0.0 && adj.get(k, j)>0.0) {
@@ -173,29 +169,34 @@ public class ClausetNewmanMoore {
 							double value = deltaQ.get(i, k) - 2 * a[j] * a[k];
 							deltaQ.set(j, k, value);
 							deltaQ.set(k, j, value);
-//							if(H.contains(j,k) || H.contains(k,j))
-//								H.set(new MatrixEntry(...))
+							if(H.contains(k,j))
+								heapToUpdate.add(k);
 						}else if(adj.get(k, i)==0.0 && adj.get(k, j)>0.0) {
 							double value = deltaQ.get(j, k) - 2 * a[i] * a[k];
 							deltaQ.set(j, k, value);
 							deltaQ.set(k, j, value);
-//							if(H.contains(j,k) || H.contains(k,j))
-//								H.set(new MatrixEntry(...))
+							if(H.contains(k,j))
+								heapToUpdate.add(k);
 						}
 					});
 		deltaQ.removeRowCol(i);
-		// H.add()
-//		H = new TreeMap<Integer,MatrixEntry>();
-//		IntStream.range(0, deltaQ.size())
-//					.forEach((ii)->{
-//						// 
-//						H.put(ii, MatrixEntry.nullEntry());
-//						IntStream.range(0, deltaQ.size())
-//									.forEach((jj)->{
-//										if(!H.get(ii).isValid() || H.get(ii).value().compareTo(deltaQ.get(ii, jj))<0)
-//											H.put(ii, new MatrixEntry(deltaQ.get(ii, jj), ii, jj));
-//									});
-//					});
+		heapToUpdate.stream()
+						.forEach((k)->update_jth_row_of_H(k));
+		H.removeAt(i);
 		adj.merge(j, i);
+	}
+	
+	private void update_jth_row_of_H(int j) {
+		MatrixEntry me = new MatrixEntry(deltaQ.get(j, 0), j, 0);
+		IntStream.range(1, deltaQ.size())
+					.forEach((col)->{
+							double value = deltaQ.get(j, col);
+							if(value > me.value()) {
+								me.setColumn(col);
+								me.setRow(j);
+								me.setValue(value);
+							}
+						});
+		H.update(me);
 	}
 }

@@ -6,8 +6,6 @@ import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.Test;
 
-import clausetNewmanMooreAlgorithm_v2.MaxHeap;
-
 class MaxHeapTest {
 
 	@Test

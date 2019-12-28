@@ -14,26 +14,26 @@ public class MaxHeap {
 		return prq.poll();
 	}
 	
-	public boolean add(MatrixEntry toAdd) {
+	public boolean populate(MatrixEntry memeber) {
 		Iterator<MatrixEntry> iter = prq.iterator();
 		boolean compare = false;
 		boolean rowCheck = false;
 		MatrixEntry next = null;
 		while(iter.hasNext()) {
 			next = iter.next();
-			if(next.sameRow(toAdd)) {
+			if(next.sameRow(memeber)) {
 				rowCheck = true;
-				if(next.compareTo(toAdd) < 0) {
+				if(next.compareTo(memeber) < 0) {
 					compare = true;
 					break;
 				}
 			}
 		}
 		if(!rowCheck)
-			return prq.add(toAdd);
+			return prq.add(memeber);
 		else if(compare) {
 			prq.remove(next);
-			return prq.add(toAdd);
+			return prq.add(memeber);
 		}
 		return false;
 	}
@@ -46,20 +46,32 @@ public class MaxHeap {
 		return false;
 	}
 	
-	public MatrixEntry entryAt(int row) throws Exception{
-		throw new Exception();
+	public void removeAt(int row) {
+		Iterator<MatrixEntry> iter = prq.iterator();
+		MatrixEntry next = null;
+		while(iter.hasNext()) {
+			next = iter.next();
+			if(next.row() == row)
+				iter.remove();
+			else {
+				if(next.row() > row)
+					next.decrementRow();
+				if(next.column() > row)
+					next.decrementColumn();
+			}
+		}
 	}
 	
-	public boolean removeAt(int row) throws Exception{
-		throw new Exception();
-	}
-	
-	public void update(int row) throws Exception{
-		throw new Exception();
-	}
-	
-	public Double valueAt(int row) throws Exception{
-		throw new Exception();
+	public boolean update(MatrixEntry toAdd) {
+		Iterator<MatrixEntry> iter = prq.iterator();
+		MatrixEntry next = null;
+		while(iter.hasNext()) {
+			next = iter.next();
+			if(next.sameRow(toAdd))
+				break;
+		}
+		prq.remove(next);
+		return prq.add(toAdd);
 	}
 	
 	/* (non-Javadoc)
