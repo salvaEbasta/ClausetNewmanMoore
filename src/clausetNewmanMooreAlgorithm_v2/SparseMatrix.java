@@ -14,6 +14,7 @@ public class SparseMatrix {
 	}
 	
 	public int size() {return dim;}
+	
 	public double get(int x, int y) throws IndexOutOfBoundsException{
 		if(x>=dim || y>=dim)
 			throw new IndexOutOfBoundsException();
@@ -23,6 +24,7 @@ public class SparseMatrix {
 			return 0.0;
 		return rows.get(x).get(y).doubleValue();
 	}
+	
 	public void set(int x, int y, double value) throws IndexOutOfBoundsException {
 		if(x>=dim || y>=dim)
 			throw new IndexOutOfBoundsException();
@@ -35,6 +37,9 @@ public class SparseMatrix {
 				rows.get(x).remove(y);
 		}
 	}
+	
+	public boolean store(int i, int j) {return rows.containsKey(i)?rows.get(i).containsKey(j):false;}
+	
 	public void removeRowCol(int i) throws IndexOutOfBoundsException {
 		if(i>=dim)
 			throw new IndexOutOfBoundsException();

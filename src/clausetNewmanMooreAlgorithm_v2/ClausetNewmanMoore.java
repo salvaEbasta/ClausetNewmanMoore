@@ -158,25 +158,33 @@ public class ClausetNewmanMoore {
 		IntStream.range(0, deltaQ.size())
 					.forEach((k)->{
 						if(adj.get(k, i)>0.0 && adj.get(k, j)>0.0) {
-							double value = deltaQ.get(i, k) + deltaQ.get(j, k);
-							deltaQ.set(j, k, value);
-							deltaQ.set(k, j, value);
+							boolean store_ik = deltaQ.store(i,k);
+							boolean store_jk = deltaQ.store(j,k);
+							if(store_ik && store_jk) {
+								double value = deltaQ.get(i, k) + deltaQ.get(j, k);
+								deltaQ.set(j, k, value);
+								deltaQ.set(k, j, value);
+							}else if(store_ik && !store_jk) {
+								double value = deltaQ.get(i, k);
+								deltaQ.set(j, k, value);
+								deltaQ.set(k, j, value);
+							}
 						}else if(adj.get(k, i)>0.0 && adj.get(k, j)==0.0) {
 							double value = deltaQ.get(i, k) - 2 * a[j] * a[k];
 							deltaQ.set(j, k, value);
 							deltaQ.set(k, j, value);
-							if(H.contains(j,k) || H.contains(k,j))
-								H.set(new MatrixEntry(...))
+//							if(H.contains(j,k) || H.contains(k,j))
+//								H.set(new MatrixEntry(...))
 						}else if(adj.get(k, i)==0.0 && adj.get(k, j)>0.0) {
 							double value = deltaQ.get(j, k) - 2 * a[i] * a[k];
 							deltaQ.set(j, k, value);
 							deltaQ.set(k, j, value);
-							if(H.contains(j,k) || H.contains(k,j))
-								H.set(new MatrixEntry(...))
+//							if(H.contains(j,k) || H.contains(k,j))
+//								H.set(new MatrixEntry(...))
 						}
 					});
 		deltaQ.removeRowCol(i);
-		
+		// H.add()
 //		H = new TreeMap<Integer,MatrixEntry>();
 //		IntStream.range(0, deltaQ.size())
 //					.forEach((ii)->{
