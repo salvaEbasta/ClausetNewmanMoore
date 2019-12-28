@@ -35,11 +35,6 @@ public class ClausetNewmanMoore {
 	public boolean extractCommunities() {
 		log.info("Finding communities . . . ");
 		MatrixEntry maxEntry = H.poll();
-//		MatrixEntry maxEntry = H.keySet()
-//				.stream()
-//				.map((i)->H.get(i))
-//				.max((a,b)->a.compareTo(b))
-//				.get();		//	select max deltaQ_ij from H
 		log.info("maxEntry: " + maxEntry.toString());
 		while(maxEntry.isValid() && maxEntry.value() > 0) {		//til communities.size == 1
 			double deltaQji = maxEntry.value();
@@ -55,11 +50,6 @@ public class ClausetNewmanMoore {
 			Q += deltaQji;		//	update Q: Q+=deltaQ_ij
 			log.info("Q : " + new Double(Q).toString());
 			maxEntry = H.poll();
-//			maxEntry = H.keySet()
-//						.stream()
-//						.map((index)->H.get(index))
-//						.max((a,b)->a.compareTo(b))
-//						.get();		//	select max deltaQ_ij from H
 			log.info("maxEntry: " + maxEntry.toString());
 		}	//repeat
 		return true;		//return communities state when Q is highest
@@ -115,10 +105,10 @@ public class ClausetNewmanMoore {
 											double newValue = 1.0/(2*adj.edgesNumber())-a[i]*a[j];
 											deltaQ.set(i, j, newValue);
 											deltaQ.set(j, i, newValue);
-											if(H.elementAt(i) == null || H.valueAt(i).compareTo(newValue) < 0)
+//											if(H.elementAt(i) == null || H.valueAt(i).compareTo(newValue) < 0)
 //											if(!H.get(i).isValid() || H.get(i).value().compareTo(newValue)<0)
 //												H.put(i, new MatrixEntry(newValue, i, j));
-												H.add(new MatrixEntry(newValue, i, j));
+											H.add(new MatrixEntry(newValue, i, j));
 										}
 									});
 					});

@@ -10,18 +10,32 @@ public class MaxHeap {
 		prq = new PriorityQueue<MatrixEntry>((me1, me2)->-me1.compareTo(me2));	
 	}
 	
-	public MatrixEntry peek() {
-		return prq.peek();
+	public MatrixEntry poll() {
+		return prq.poll();
 	}
 	
-	public boolean add(MatrixEntry me) throws Exception{
-		throw new Exception();
-//		if(entryAt(me.row())==null)
-//			return prq.add(me);
-//		else {
-//			
-//		}
-//		return false;
+	public boolean add(MatrixEntry toAdd) {
+		Iterator<MatrixEntry> iter = prq.iterator();
+		boolean compare = false;
+		boolean rowCheck = false;
+		MatrixEntry next = null;
+		while(iter.hasNext()) {
+			next = iter.next();
+			if(next.sameRow(toAdd)) {
+				rowCheck = true;
+				if(next.compareTo(toAdd) < 0) {
+					compare = true;
+					break;
+				}
+			}
+		}
+		if(!rowCheck)
+			return prq.add(toAdd);
+		else if(compare) {
+			prq.remove(next);
+			return prq.add(toAdd);
+		}
+		return false;
 	}
 	
 	public boolean contains(int i, int j) {
