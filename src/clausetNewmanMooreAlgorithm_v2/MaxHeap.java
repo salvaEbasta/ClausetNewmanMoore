@@ -72,7 +72,7 @@ public class MaxHeap {
 		}
 		prq.remove(next);
 		return prq.add(toAdd);
-	}
+	} // TODO
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

@@ -79,7 +79,7 @@ public class ClausetNewmanMoore {
 	 */
 	private void init_a(AdjMatrix adj) {
 		a = IntStream.range(0, adj.size())
-							.mapToDouble((i)->adj.degree(i)/(2*adj.edgesNumber()))
+							.mapToDouble((i)->(adj.degree(i))/((double)(2*adj.edgesNumber())))
 							.toArray();
 	}
 	
@@ -125,6 +125,8 @@ public class ClausetNewmanMoore {
 		if(i!=j) {
 			tmp.get(j).joinWith(tmp.get(i));
 			tmp.remove(i);
+		} else {
+			System.out.println("Attenzione! Si sta cercando di unire due comunità uguali.");
 		}
 		return tmp;
 	}
@@ -135,10 +137,14 @@ public class ClausetNewmanMoore {
 	 */
 	private void update_a(int j, int i) {
 		a[j] = a[j] + a[i];
+		int original_size = a.length;
 		a = IntStream.range(0, a.length)
 						.filter((k)->k!=i)
 						.mapToDouble((k)->a[k])
 						.toArray();
+		if (a.length == original_size) {
+			System.out.println("La dimensione è rimasta uguale!!!");
+		}
 	}
 	
 	/**Update jth row&column in deltaQ, adjMatrix, H + remove ith row&col in deltaQ, adjmatrix, H
@@ -163,13 +169,17 @@ public class ClausetNewmanMoore {
 								deltaQ.set(j, k, value);
 								deltaQ.set(k, j, value);
 							}
-						}else if(adj.get(k, i)>0.0 && adj.get(k, j)==0.0) {
+							
+							if(H.contains(k,j))
+								heapToUpdate.add(k);
+							
+						}else if(adj.get(k, i)>0.0 /* && adj.get(k, j)==0.0*/) {
 							double value = deltaQ.get(i, k) - 2 * a[j] * a[k];
 							deltaQ.set(j, k, value);
 							deltaQ.set(k, j, value);
 							if(H.contains(k,j))
 								heapToUpdate.add(k);
-						}else if(adj.get(k, i)==0.0 && adj.get(k, j)>0.0) {
+						}else if(/*adj.get(k, i)==0.0 &&*/ adj.get(k, j)>0.0) {
 							double value = deltaQ.get(j, k) - 2 * a[i] * a[k];
 							deltaQ.set(j, k, value);
 							deltaQ.set(k, j, value);
