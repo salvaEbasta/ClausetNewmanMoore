@@ -17,7 +17,6 @@ public class ClausetNewmanMoore {
 	private ArrayList<Community> communities;
 	
 	public ClausetNewmanMoore(AdjMatrix adj) {
-		log.info("Init . . . ");
 		this.adj = adj;
 		init_a(this.adj);	//initialize a
 		log.info("a : " + Arrays.toString(a));
@@ -34,7 +33,8 @@ public class ClausetNewmanMoore {
 		log.info("Finding communities . . . ");
 		MatrixEntry maxEntry = H.poll();
 		log.info("maxEntry: " + maxEntry.toString());
-		while(maxEntry.isValid() && maxEntry.value() > 0) {		//til communities.size == 1
+		
+		while(maxEntry!=null && maxEntry.isValid() && maxEntry.value() > 0) {		//til communities.size == 1
 			double deltaQji = maxEntry.value();
 			int i = maxEntry.row();
 			int j = maxEntry.column();
@@ -48,7 +48,7 @@ public class ClausetNewmanMoore {
 			Q += deltaQji;		//	update Q: Q+=deltaQ_ij
 			log.info("Q : " + new Double(Q).toString());
 			maxEntry = H.poll();
-			log.info("maxEntry: " + maxEntry.toString());
+			log.info("maxEntry: " + (maxEntry!=null?maxEntry.toString():"null"));
 		}	//repeat
 		return true;		//return communities state when Q is highest
 	}
@@ -71,7 +71,6 @@ public class ClausetNewmanMoore {
 	 * @param a
 	 */
 	private void init_Q(double[] a) {
-		log.info("Init Q . . . ");
 		Q = Modularity.nodesAsCommunities(a);
 	}
 	
@@ -80,7 +79,6 @@ public class ClausetNewmanMoore {
 	 * @return
 	 */
 	private void init_a(AdjMatrix adj) {
-		log.info("Init a . . . ");
 		a = IntStream.range(0, adj.size())
 							.mapToDouble((i)->adj.degree(i)/(2*adj.edgesNumber()))
 							.toArray();
@@ -90,12 +88,11 @@ public class ClausetNewmanMoore {
 	 * @param adj
 	 */
 	private void init_deltaQ_H(AdjMatrix adj) {
-		log.info("Init deltaQ + H . . . ");
 		deltaQ = new SparseMatrix(adj.size());
 		H = new MaxHeap();
 		IntStream.range(0, adj.size())
 					.forEach((i)->{
-						IntStream.range(0, adj.size())
+						IntStream.range(i+1, adj.size())
 									.forEach((j)->{
 										if(adj.get(i, j)>0) {
 											double newValue = 1.0/(2*adj.edgesNumber())-a[i]*a[j];
@@ -113,7 +110,6 @@ public class ClausetNewmanMoore {
 	 * @return
 	 */
 	private void init_communities(AdjMatrix adj){
-		log.info("Init communities . . . ");
 		communities = new ArrayList<Community>();
 		IntStream.range(0, adj.size())
 					.forEach((i)->communities.add(new Community(String.format(nameTemplate, i))));
@@ -124,10 +120,13 @@ public class ClausetNewmanMoore {
 	 * @param i
 	 */
 	private ArrayList<Community> join_communities(int j, int i, ArrayList<Community> communities) {
+		
 		ArrayList<Community> tmp = new ArrayList<Community>();
 		IntStream.range(0, communities.size()).forEach((n)->tmp.add(communities.get(n)));
-		tmp.get(j).joinWith(tmp.get(i));
-		tmp.remove(i);
+		if(i!=j) {
+			tmp.get(j).joinWith(tmp.get(i));
+			tmp.remove(i);
+		}
 		return tmp;
 	}
 	
@@ -154,8 +153,8 @@ public class ClausetNewmanMoore {
 		IntStream.range(0, deltaQ.size())
 					.forEach((k)->{
 						if(adj.get(k, i)>0.0 && adj.get(k, j)>0.0) {
-							boolean store_ik = deltaQ.store(i,k);
-							boolean store_jk = deltaQ.store(j,k);
+							boolean store_ik = deltaQ.stored(i,k);
+							boolean store_jk = deltaQ.stored(j,k);
 							if(store_ik && store_jk) {
 								double value = deltaQ.get(i, k) + deltaQ.get(j, k);
 								deltaQ.set(j, k, value);
@@ -179,14 +178,14 @@ public class ClausetNewmanMoore {
 								heapToUpdate.add(k);
 						}
 					});
-		deltaQ.removeRowCol(i);
 		heapToUpdate.stream()
-						.forEach((k)->update_jth_row_of_H(k));
+						.forEach((k)->update_kth_row_of_H(k));
+		deltaQ.removeRowCol(i);
 		H.removeAt(i);
 		adj.merge(j, i);
 	}
 	
-	private void update_jth_row_of_H(int j) {
+	private void update_kth_row_of_H(int j) {
 		MatrixEntry me = new MatrixEntry(deltaQ.get(j, 0), j, 0);
 		IntStream.range(1, deltaQ.size())
 					.forEach((col)->{

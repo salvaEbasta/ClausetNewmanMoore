@@ -12,9 +12,6 @@ public class ModularityControl {
 		this.adj = adj;
 		this.nodesToCommunities = nodeToCommunity;
 	}
-	public int[] nodesToCommunities() {
-		return nodesToCommunities;
-	}
 
 	private double e(int ci, int cj) {
 		double eij = IntStream.range(0, adj.size())
@@ -34,10 +31,10 @@ public class ModularityControl {
 		return ci==cj?1:0;
 	}
 	public double compute() {
-		System.out.println(String.format("e total = %f", IntStream.of(nodesToCommunities)
-				.distinct()
-				.mapToDouble((i)->e(i,i))
-				.sum()));
+//		System.out.println(String.format("e total = %f", IntStream.of(nodesToCommunities)
+//				.distinct()
+//				.mapToDouble((i)->e(i,i))
+//				.sum()));
 		return IntStream.of(nodesToCommunities)
 				.distinct()
 				.mapToDouble((i)->e(i,i)-Math.pow(a(i), 2))

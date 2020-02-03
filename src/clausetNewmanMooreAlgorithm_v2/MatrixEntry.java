@@ -22,7 +22,6 @@ public class MatrixEntry {
 	public int compareTo(MatrixEntry toCompare) {return value.compareTo(toCompare.value);}
 	public boolean sameRow(MatrixEntry m) {return this.x==m.x;}
 	public boolean hasCoords(int i, int j) {return i==x&&y==j;}
-	public static MatrixEntry nullEntry() {return new MatrixEntry(0.0, -1, -1);}
 	
 	public String toString() {return String.format("(%d, %d): %f", x, y, value);}
 }
