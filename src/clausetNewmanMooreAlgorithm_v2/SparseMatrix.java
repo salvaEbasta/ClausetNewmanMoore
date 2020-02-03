@@ -38,7 +38,7 @@ public class SparseMatrix {
 		}
 	}
 	
-	public boolean store(int i, int j) {return rows.containsKey(i)?rows.get(i).containsKey(j):false;}
+	public boolean stored(int i, int j) {return rows.containsKey(i)?rows.get(i).containsKey(j):false;}
 	
 	public void removeRowCol(int i) throws IndexOutOfBoundsException {
 		if(i>=dim)
