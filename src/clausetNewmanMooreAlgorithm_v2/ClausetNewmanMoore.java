@@ -34,7 +34,7 @@ public class ClausetNewmanMoore {
 		log.info("Finding communities . . . ");
 		MatrixEntry maxEntry = H.poll();
 		log.info("maxEntry: " + maxEntry.toString());
-		while(maxEntry.isValid() && maxEntry.value() > 0) {		//til communities.size == 1
+		while(maxEntry.isValid() && maxEntry.value() >= 0) {		//til communities.size == 1
 			double deltaQji = maxEntry.value();
 			int i = maxEntry.row();
 			int j = maxEntry.column();
