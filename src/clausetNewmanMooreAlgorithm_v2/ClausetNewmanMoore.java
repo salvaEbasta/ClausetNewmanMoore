@@ -119,7 +119,6 @@ public class ClausetNewmanMoore {
 	 * @param i
 	 */
 	private ArrayList<Community> join_communities(int j, int i, ArrayList<Community> communities) {
-		
 		ArrayList<Community> tmp = new ArrayList<Community>();
 		IntStream.range(0, communities.size()).forEach((n)->tmp.add(communities.get(n)));
 		if(i!=j) {
