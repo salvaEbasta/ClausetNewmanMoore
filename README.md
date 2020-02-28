@@ -1,3 +1,3 @@
 ### Greedy Modularity
-Todo: extend to weighted graphs<br>
-Todo: check times to find the slowest part
+Master branch contains the version without weight<br>
+Weighted branch contains the version for weighted graphs
