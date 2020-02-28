@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 public class SimpleUndirectedGraph implements Graph{
 	private HashMap<Node, HashSet<Edge>> comp;
-	private int edges;
+	private double edges;
 	
 	public SimpleUndirectedGraph() {
 		init();
@@ -37,7 +37,7 @@ public class SimpleUndirectedGraph implements Graph{
 		Edge e = new Edge(n_act, m_act, weight, label);
 		comp.get(n).add(e);
 		comp.get(m).add(e);
-		edges+=1;
+		edges+=e.weight();
 		return true;
 	}
 	public boolean add_edge(Node n, Node m, double weight) {
@@ -47,12 +47,12 @@ public class SimpleUndirectedGraph implements Graph{
 		return add_new_edge(n, m, 1.0, "");
 	}
 	
-	public int edgesN() {
+	public double edgesN() {
 		return edges;
 	}
 	
-	public int degree(Node n) {
-		return comp.get(n).size();
+	public double degree(Node n) {
+		return comp.get(n).stream().mapToDouble((e)->e.weight()).sum();
 	}
 	
 	public List<Node> nodes(){

@@ -16,13 +16,13 @@ public interface Graph {
 	/**
 	 * @return the number of ALL the edges of the graph
 	 */
-	public int edgesN();
+	public double edgesN();
 	/**
 	 * Returns the degree of a specific node
 	 * @param node a node of the graph
 	 * @return the degree of the node
 	 */
-	public int degree(Node node);
+	public double degree(Node node);
 	/**
 	 * Returns the neighbors of a specific node
 	 * @param node a node of the graph
