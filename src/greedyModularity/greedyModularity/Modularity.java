@@ -1,5 +1,4 @@
 package greedyModularity.greedyModularity;
-
 import java.util.stream.*;
 
 public class Modularity {

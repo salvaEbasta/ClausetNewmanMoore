@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import greedyModularity.graph.Graph;
-import greedyModularity.graph.Node;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -18,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import greedyModularity.graph.Graph;
+import greedyModularity.graph.Node;
 
 /**
  * Implements the Greedy Modularity method proposed by Clauset, Newman and Moore
@@ -40,9 +38,9 @@ public class GreedyModularity {
 		log.setLevel(Level.FINE);
 		try {
 			// Output in a text file
-			FileHandler fh = new FileHandler("log.txt");
-			fh.setFormatter(new SimpleFormatter());
-			log.addHandler(fh);
+//			FileHandler fh = new FileHandler("log.txt");
+//			fh.setFormatter(new SimpleFormatter());
+//			log.addHandler(fh);
 			// No console
 			log.setUseParentHandlers(false);
 		}catch(Exception io) {
@@ -60,7 +58,7 @@ public class GreedyModularity {
 		log.info("start: GREEDY MODULARITY on "+g);
 		
 		int N = g.nodes().size();
-		int m = g.edgesN();
+		double m = g.edgesN();
 		double q0 = 1.0/(2.0*m);
 		
 		// Maps every node in an integer(just to simplify the use of nodes)
@@ -72,7 +70,7 @@ public class GreedyModularity {
 		});
 		
 		// Degree of each node
-		int[] k = IntStream.range(0, N).map((i)->g.degree(labelToNode.get(i))).toArray();
+		double[] k = IntStream.range(0, N).mapToDouble((i)->g.degree(labelToNode.get(i))).toArray();
 		
 		// Initialize the communities and the Story of all the merges
 		// At the start each node by itself is a community
