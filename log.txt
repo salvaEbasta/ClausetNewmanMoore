@@ -1,0 +1,112 @@
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: start: GREEDY MODULARITY on {1=[([1, 3], w:1,00), ([1, 2], w:1,00), ([0, 1], w:1,00)], 0=[([0, 2], w:1,00), ([0, 1], w:1,00)], 6=[([5, 6], w:1,00), ([4, 6], w:1,00)], 5=[([5, 6], w:1,00), ([4, 5], w:1,00)], 4=[([4, 5], w:1,00), ([3, 4], w:1,00), ([4, 6], w:1,00)], 3=[([1, 3], w:1,00), ([3, 4], w:1,00), ([2, 3], w:1,00)], 2=[([0, 2], w:1,00), ([2, 3], w:1,00), ([1, 2], w:1,00)]}
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Initial Q: -0.14814814814814814, H: [(8,6419753086419750e-02, r:2, c:3), (8,6419753086419750e-02, r:3, c:2), (7,4074074074074070e-02, r:0, c:1), (7,4074074074074070e-02, r:1, c:0), (7,4074074074074070e-02, r:4, c:2), (5,5555555555555550e-02, r:5, c:0), (7,4074074074074070e-02, r:6, c:1)]
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Key sets for i=2: [3, 4] and for j=3: [2, 4]
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Set of keys: Union: [4], Intersection: [4]
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: Update index (3, 4)
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (1,4814814814814814e-01, r:3, c:4)
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (1,4814814814814814e-01, r:4, c:3)
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: {0={1=0.07407407407407407, 5=0.05555555555555555, 6=0.05555555555555555}, 1={0=0.07407407407407407, 6=0.07407407407407407}, 2={3=0.08641975308641975, 4=0.07407407407407407}, 3={2=0.08641975308641975, 4=0.14814814814814814}, 4={2=0.07407407407407407, 3=0.14814814814814814, 5=0.05555555555555555}, 5={0=0.05555555555555555, 4=0.05555555555555555, 6=0.05555555555555555}, 6={0=0.05555555555555555, 1=0.07407407407407407, 5=0.05555555555555555}}
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Removal of row 2
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity lambda$16
+INFO: Correction of Heap[4]
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Iteration end(Q:-0.06172839506172839): merges : [2->3(+0,09)], communities: {0=[0], 1=[1], 3=[2, 3], 4=[4], 5=[5], 6=[6]}, H: [(1,4814814814814814e-01, r:3, c:4), (7,4074074074074070e-02, r:6, c:1), (1,4814814814814814e-01, r:4, c:3), (7,4074074074074070e-02, r:1, c:0), (7,4074074074074070e-02, r:0, c:1), (5,5555555555555550e-02, r:5, c:0)]
+feb 28, 2020 11:08:20 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Key sets for i=3: [4] and for j=4: [3, 5]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Set of keys: Union: [5], Intersection: []
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: Update index (4, 5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (-1,8518518518518517e-02, r:4, c:5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (-1,8518518518518517e-02, r:5, c:4)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: {0={1=0.07407407407407407, 5=0.05555555555555555, 6=0.05555555555555555}, 1={0=0.07407407407407407, 6=0.07407407407407407}, 3={4=0.14814814814814814}, 4={3=0.14814814814814814, 5=-0.018518518518518517}, 5={0=0.05555555555555555, 4=-0.018518518518518517, 6=0.05555555555555555}, 6={0=0.05555555555555555, 1=0.07407407407407407, 5=0.05555555555555555}}
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Removal of row 3
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Iteration end(Q:0.08641975308641975): merges : [2->3(+0,09), 3->4(+0,15)], communities: {0=[0], 1=[1], 4=[2, 3, 4], 5=[5], 6=[6]}, H: [(7,4074074074074070e-02, r:0, c:1), (7,4074074074074070e-02, r:6, c:1), (5,5555555555555550e-02, r:5, c:0), (7,4074074074074070e-02, r:1, c:0), (-1,8518518518518517e-02, r:4, c:5)]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Key sets for i=0: [1, 5, 6] and for j=1: [0, 6]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Set of keys: Union: [5, 6], Intersection: [6]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: Update index (1, 5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (1,8518518518518517e-02, r:1, c:5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (1,8518518518518517e-02, r:5, c:1)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: {0={1=0.07407407407407407, 5=0.05555555555555555, 6=0.05555555555555555}, 1={0=0.07407407407407407, 5=0.018518518518518517, 6=0.07407407407407407}, 4={5=-0.018518518518518517}, 5={0=0.05555555555555555, 1=0.018518518518518517, 4=-0.018518518518518517, 6=0.05555555555555555}, 6={0=0.05555555555555555, 1=0.07407407407407407, 5=0.05555555555555555}}
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: Update index (1, 6)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (1,2962962962962962e-01, r:1, c:6)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (1,2962962962962962e-01, r:6, c:1)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: {0={1=0.07407407407407407, 5=0.05555555555555555, 6=0.05555555555555555}, 1={0=0.07407407407407407, 5=0.018518518518518517, 6=0.12962962962962962}, 4={5=-0.018518518518518517}, 5={0=0.05555555555555555, 1=0.018518518518518517, 4=-0.018518518518518517, 6=0.05555555555555555}, 6={0=0.05555555555555555, 1=0.12962962962962962, 5=0.05555555555555555}}
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Removal of row 0
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$16
+INFO: Correction of Heap[5]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$16
+INFO: Correction of Heap[6]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Iteration end(Q:0.16049382716049382): merges : [2->3(+0,09), 3->4(+0,15), 0->1(+0,07)], communities: {1=[0, 1], 4=[2, 3, 4], 5=[5], 6=[6]}, H: [(1,2962962962962962e-01, r:1, c:6), (1,2962962962962962e-01, r:6, c:1), (5,5555555555555550e-02, r:5, c:6), (-1,8518518518518517e-02, r:4, c:5)]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Key sets for i=1: [5, 6] and for j=6: [1, 5]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Set of keys: Union: [5], Intersection: [5]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: Update index (6, 5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (7,4074074074074070e-02, r:6, c:5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (7,4074074074074070e-02, r:5, c:6)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: {1={5=0.018518518518518517, 6=0.12962962962962962}, 4={5=-0.018518518518518517}, 5={1=0.018518518518518517, 4=-0.018518518518518517, 6=0.07407407407407407}, 6={1=0.12962962962962962, 5=0.07407407407407407}}
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Removal of row 1
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$16
+INFO: Correction of Heap[5]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Iteration end(Q:0.2901234567901234): merges : [2->3(+0,09), 3->4(+0,15), 0->1(+0,07), 1->6(+0,13)], communities: {4=[2, 3, 4], 5=[5], 6=[0, 1, 6]}, H: [(7,4074074074074070e-02, r:6, c:5), (7,4074074074074070e-02, r:5, c:6), (-1,8518518518518517e-02, r:4, c:5)]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Key sets for i=6: [5] and for j=5: [4, 6]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Set of keys: Union: [4], Intersection: []
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: Update index (5, 4)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (-3,6419753086419750e-01, r:5, c:4)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$15
+INFO: New entry: (-3,6419753086419750e-01, r:4, c:5)
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity lambda$14
+INFO: {4={5=-0.3641975308641975}, 5={4=-0.3641975308641975, 6=0.07407407407407407}, 6={5=0.07407407407407407}}
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Removal of row 6
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Iteration end(Q:0.3641975308641975): merges : [2->3(+0,09), 3->4(+0,15), 0->1(+0,07), 1->6(+0,13), 6->5(+0,07)], communities: {4=[2, 3, 4], 5=[0, 1, 5, 6]}, H: [(-3,6419753086419750e-01, r:5, c:4), (-3,6419753086419750e-01, r:4, c:5)]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: start: GREEDY MODULARITY on {1=[([0, 1], w:1,00)], 0=[([0, 1], w:1,00)], 2=[]}
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Initial Q: -0.5, H: [(5,0000000000000000e-01, r:0, c:1), (5,0000000000000000e-01, r:1, c:0)]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Key sets for i=0: [1] and for j=1: [0]
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Set of keys: Union: [], Intersection: []
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Removal of row 0
+feb 28, 2020 11:08:21 AM greedyModularity.greedyModularity.GreedyModularity extract
+INFO: Iteration end(Q:0.0): merges : [0->1(+0,50)], communities: {1=[0, 1], 2=[2]}, H: []
