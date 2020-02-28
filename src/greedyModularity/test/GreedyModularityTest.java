@@ -21,7 +21,11 @@ class GreedyModularityTest {
 		int[][] adjMat = new int[][] {{0, 1, 0},
 										{1, 0, 0},
 										{0, 0, 0}};
+		long buildStart = System.nanoTime();
+		
 		Graph g = GraphBuilder.build(adjMat);
+		
+		double buildDuration = (System.nanoTime() - buildStart)/1000000;
 		
 		ArrayList<HashSet<Node>> expected = new ArrayList<HashSet<Node>>();
 		expected.add(new HashSet<Node>());
@@ -30,8 +34,14 @@ class GreedyModularityTest {
 		expected.get(0).add(new Node("1"));
 		expected.get(1).add(new Node("2"));
 
+		long methodStart = System.nanoTime();
+		
 		List<Set<Node>> result = GreedyModularity.extract(g);
+		
+		double methodDuration = (System.nanoTime() - methodStart)/1000000;
+		
 		assertTrue(result.containsAll(expected));
+		System.out.println("3x3: build: "+buildDuration+" ms, method: "+methodDuration+" ms");
 	}
 	
 	@Test
@@ -43,9 +53,11 @@ class GreedyModularityTest {
 										{0,0,0,1,0,1,1},
 										{0,0,0,0,1,0,1},
 										{0,0,0,0,1,1,0}};
-		//"[[var_0, var_1, var_2, var_3], 
-		//	[var_4, var_5, var_6]]";
+		long buildStart = System.nanoTime();
+		
 		Graph g = GraphBuilder.build(adjMat);
+		
+		double buildDuration = (System.nanoTime() - buildStart)/1000000;
 		
 		ArrayList<HashSet<Node>> expected = new ArrayList<HashSet<Node>>();
 		expected.add(new HashSet<Node>());
@@ -58,8 +70,14 @@ class GreedyModularityTest {
 		expected.get(1).add(new Node("5"));
 		expected.get(1).add(new Node("6"));
 
+		long methodStart = System.nanoTime();
+		
 		List<Set<Node>> result = GreedyModularity.extract(g);
+		
+		double methodDuration = (System.nanoTime() - methodStart)/1000000;
+		
 		assertTrue(result.containsAll(expected));
+		System.out.println("7x7: build: "+buildDuration+" ms, method: "+methodDuration+" ms");
 	}
 
 	@Test
@@ -84,8 +102,12 @@ class GreedyModularityTest {
 										{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 										{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1},
 										{0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0}};
-		// [[var_0, var_1, var_5], [var_2, var_7, var_8], [var_3, var_4, var_9], [var_6, var_12], [var_10, var_11, var_15, var_16], [var_13, var_14, var_18, var_19], [var_17]]
+		
+		long buildStart = System.nanoTime();
+		
 		Graph g = GraphBuilder.build(adjMat);
+		
+		double buildDuration = (System.nanoTime() - buildStart)/1000000;
 		
 		ArrayList<HashSet<Node>> expected = new ArrayList<HashSet<Node>>();
 		expected.add(new HashSet<Node>());
@@ -116,7 +138,13 @@ class GreedyModularityTest {
 		expected.get(5).add(new Node("19"));
 		expected.get(6).add(new Node("17"));
 		
+		long methodStart = System.nanoTime();
+		
 		List<Set<Node>> result = GreedyModularity.extract(g);
+		
+		double methodDuration = (System.nanoTime() - methodStart)/1000000;
+		
 		assertTrue(result.containsAll(expected));
+		System.out.println("20x20: build: "+buildDuration+" ms, method: "+methodDuration+" ms");
 	}
 }
