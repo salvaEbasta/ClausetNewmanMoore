@@ -1,8 +1,8 @@
-package clausetNewmanMooreAlgorithm_v2.test;
+package greedyModularity_badImplementation.test;
 
 import java.util.stream.IntStream;
 
-import clausetNewmanMooreAlgorithm_v2.AdjMatrix;
+import greedyModularity_badImplementation.AdjMatrix;
 
 public class ModularityControl {
 	private AdjMatrix adj;

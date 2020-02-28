@@ -1,4 +1,4 @@
-package clausetNewmanMooreAlgorithm_v2.test;
+package greedyModularity_badImplementation.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
-import clausetNewmanMooreAlgorithm_v2.Community;
+import greedyModularity_badImplementation.Community;
 
 class CommunityTest {
 

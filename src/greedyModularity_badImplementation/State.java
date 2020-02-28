@@ -1,4 +1,4 @@
-package clausetNewmanMooreAlgorithm_v2;
+package greedyModularity_badImplementation;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;

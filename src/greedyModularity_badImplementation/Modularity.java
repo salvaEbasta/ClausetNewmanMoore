@@ -1,4 +1,4 @@
-package clausetNewmanMooreAlgorithm_v2;
+package greedyModularity_badImplementation;
 
 import java.util.stream.*;
 

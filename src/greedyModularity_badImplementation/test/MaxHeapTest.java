@@ -1,4 +1,4 @@
-package clausetNewmanMooreAlgorithm_v2.test;
+package greedyModularity_badImplementation.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

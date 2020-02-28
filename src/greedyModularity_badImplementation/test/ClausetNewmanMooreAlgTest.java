@@ -1,12 +1,12 @@
-package clausetNewmanMooreAlgorithm_v2.test;
+package greedyModularity_badImplementation.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import clausetNewmanMooreAlgorithm_v2.AdjMatrix;
-import clausetNewmanMooreAlgorithm_v2.ClausetNewmanMoore;
-import clausetNewmanMooreAlgorithm_v2.test.ModularityControl;
+import greedyModularity_badImplementation.AdjMatrix;
+import greedyModularity_badImplementation.ClausetNewmanMoore;
+import greedyModularity_badImplementation.test.ModularityControl;
 
 class ClausetNewmanMooreAlgTest {
 
