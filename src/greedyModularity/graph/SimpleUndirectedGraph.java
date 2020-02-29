@@ -1,4 +1,5 @@
 package greedyModularity.graph;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,8 +36,21 @@ public class SimpleUndirectedGraph<N> implements Graph<N>{
 									.filter((k)->k.equals(m))
 									.findFirst().get();
 		Edge<N> e = new Edge<N>(n_act, m_act, weight, label);
-		comp.get(n).add(e);
-		comp.get(m).add(e);
+		if(neighbors(n).contains(m)) {
+			Edge<N> e_new = new Edge<N>(n_act, 
+										m_act, 
+										weight + comp.get(n).stream()
+														.filter(edge->edge.equals(e))
+														.findAny().get().weight(), 
+										label);
+			comp.get(n).remove(e);
+			comp.get(m).remove(e);
+			comp.get(n).add(e_new);
+			comp.get(m).add(e_new);
+		}else {
+			comp.get(n).add(e);
+			comp.get(m).add(e);
+		}
 		edges+=e.weight();
 		return true;
 	}
