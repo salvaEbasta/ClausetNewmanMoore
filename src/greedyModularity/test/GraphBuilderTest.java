@@ -15,13 +15,13 @@ class GraphBuilderTest {
 		int[][] adjMat = new int[][] {{0, 1, 0},
 										{1, 0, 0},
 										{0, 0, 0}};
-		SimpleUndirectedGraph expected = new SimpleUndirectedGraph();
+		SimpleUndirectedGraph<Node> expected = new SimpleUndirectedGraph<Node>();
 		expected.add_node(new Node("0"));
 		expected.add_node(new Node("1"));
 		expected.add_node(new Node("2"));
 		expected.add_edge(new Node("0"), new Node("1"));
 		
-		SimpleUndirectedGraph g = GraphBuilder.build(adjMat);
+		SimpleUndirectedGraph<Node> g = GraphBuilder.build(adjMat);
 		assertTrue(g.equals(expected));
 	}
 
@@ -34,7 +34,7 @@ class GraphBuilderTest {
 							            {0,0,0,1,0,1,1},
 							            {0,0,0,0,1,0,1},
 							            {0,0,0,0,1,1,0}};
-		SimpleUndirectedGraph expected = new SimpleUndirectedGraph();
+		SimpleUndirectedGraph<Node> expected = new SimpleUndirectedGraph<Node>();
 		expected.add_node(new Node("0"));
 		expected.add_node(new Node("1"));
 		expected.add_node(new Node("2"));
@@ -54,7 +54,7 @@ class GraphBuilderTest {
 		expected.add_edge(new Node("4"), new Node("6"));
 		expected.add_edge(new Node("5"), new Node("6"));
 		
-		SimpleUndirectedGraph g = GraphBuilder.build(adjMat);
+		SimpleUndirectedGraph<Node> g = GraphBuilder.build(adjMat);
 		assertTrue(g.equals(expected));
 	}
 

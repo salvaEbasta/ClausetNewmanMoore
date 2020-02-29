@@ -11,7 +11,7 @@ class GraphTest {
 
 	@Test
 	void node_introduction_test() {
-		SimpleUndirectedGraph g = new SimpleUndirectedGraph();
+		SimpleUndirectedGraph<Node> g = new SimpleUndirectedGraph<Node>();
 		assertTrue(g.edgesN()==0);
 		assertTrue(g.nodes().size()==0);
 		
@@ -28,7 +28,7 @@ class GraphTest {
 	
 	@Test
 	void add_edge_test() {
-		SimpleUndirectedGraph g = new SimpleUndirectedGraph();
+		SimpleUndirectedGraph<Node> g = new SimpleUndirectedGraph<Node>();
 		Node a = new Node("a");
 		Node b = new Node("b");
 		

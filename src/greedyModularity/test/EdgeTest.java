@@ -15,11 +15,11 @@ class EdgeTest {
 	void equality_test() {
 		Node a = new Node("a");
 		Node b = new Node("b");
-		Edge ab = new Edge(a, b);
-		Edge ba = new Edge(b, a);
+		Edge<Node> ab = new Edge<Node>(a, b);
+		Edge<Node> ba = new Edge<Node>(b, a);
 		assertTrue(Objects.equals(ab, ba));
 		
-		ab = new Edge(a, b, "ab");
+		ab = new Edge<Node>(a, b, "ab");
 		assertFalse(Objects.equals(ab, ba));
 	}
 }

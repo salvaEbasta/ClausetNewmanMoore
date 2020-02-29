@@ -53,7 +53,7 @@ public class GreedyModularity {
 	 * @param g the graph to be analyzed
 	 * @return the list of clusters found
 	 */
-	public static List<Set<Node>> extract(Graph g) {
+	public static <N> List<Set<N>> extract(Graph<N> g) {
 		initLogger();
 		log.info("start: GREEDY MODULARITY on "+g);
 		
@@ -62,8 +62,8 @@ public class GreedyModularity {
 		double q0 = 1.0/(2.0*m);
 		
 		// Maps every node in an integer(just to simplify the use of nodes)
-		TreeMap<Integer,Node> labelToNode = new TreeMap<Integer,Node>();
-		HashMap<Node,Integer> nodeToLabel = new HashMap<Node,Integer>();
+		TreeMap<Integer, N> labelToNode = new TreeMap<Integer, N>();
+		HashMap<N, Integer> nodeToLabel = new HashMap<N, Integer>();
 		IntStream.range(0, N).forEach((i)->{
 			labelToNode.put(i, g.nodes().get(i));
 			nodeToLabel.put(g.nodes().get(i), i);

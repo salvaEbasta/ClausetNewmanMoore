@@ -4,15 +4,14 @@ import java.util.List;
 
 /**
  * Defines the behavior of a generic Graph
- * This is the be
  * @author Matteo
  *
  */
-public interface Graph {
+public interface Graph <N>{
 	/**
 	 * @return the list of all the nodes of the graph
 	 */
-	public List<Node> nodes();
+	public List<N> nodes();
 	/**
 	 * @return the number of ALL the edges of the graph
 	 */
@@ -22,11 +21,11 @@ public interface Graph {
 	 * @param node a node of the graph
 	 * @return the degree of the node
 	 */
-	public double degree(Node node);
+	public double degree(N node);
 	/**
 	 * Returns the neighbors of a specific node
 	 * @param node a node of the graph
 	 * @return the list of its neighbors
 	 */
-	public List<Node> neighbors(Node node);
+	public List<N> neighbors(N node);
 }

@@ -23,7 +23,7 @@ class GreedyModularityTest {
 										{0, 0, 0}};
 		long buildStart = System.nanoTime();
 		
-		Graph g = GraphBuilder.build(adjMat);
+		Graph<Node> g = GraphBuilder.build(adjMat);
 		
 		double buildDuration = (System.nanoTime() - buildStart)/1000000;
 		
@@ -55,7 +55,7 @@ class GreedyModularityTest {
 										{0,0,0,0,1,1,0}};
 		long buildStart = System.nanoTime();
 		
-		Graph g = GraphBuilder.build(adjMat);
+		Graph<Node> g = GraphBuilder.build(adjMat);
 		
 		double buildDuration = (System.nanoTime() - buildStart)/1000000;
 		
@@ -105,7 +105,7 @@ class GreedyModularityTest {
 		
 		long buildStart = System.nanoTime();
 		
-		Graph g = GraphBuilder.build(adjMat);
+		Graph<Node> g = GraphBuilder.build(adjMat);
 		
 		double buildDuration = (System.nanoTime() - buildStart)/1000000;
 		
